@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>My Todo List</h1>
+
+    <!-- Add Task Form -->
+    <form action="/add" method="POST" class="add-task">
+      <input type="text" name="title" placeholder="Enter task title">
+      <select name="priority">
+        <option value="low">Low</option>
+        <option value="urgent">Urgent</option>
+        <option value="high">High</option>
+      </select>
+      <button type="submit">Add</button>
+    </form>
+
+    <!-- Task List -->
+    <ul>
+      <% tasks.forEach(task => { %>
+        <li>
+          <!-- Edit Form -->
+          <form action="/edit/<%= task._id %>?_method=PUT" method="POST">
+            <input type="text" name="title" value="<%= task.title %>">
+            <select name="priority">
+              <option value="low" <%= task.priority === 'low' ? 'selected' : '' %>>Low</option>
+              <option value="urgent" <%= task.priority === 'urgent' ? 'selected' : '' %>>Urgent</option>
+              <option value="high" <%= task.priority === 'high' ? 'selected' : '' %>>High</option>
+            </select>
+            <button type="submit" title="Update">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </form>
+
+          <!-- Delete Form -->
+          <form action="/delete/<%= task._id %>?_method=DELETE" method="POST">
+            <button type="submit" title="Delete">
+              <i class="fa fa-trash"></i>
+            </button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+
+  </div>
+</body>
+</html>

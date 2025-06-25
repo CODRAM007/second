@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Environment Variables
+.env
+
+# Logs
+logs
+*.log
+
+# Optional folders
+.sass-cache/
+coverage/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode settings
+.vscode/
